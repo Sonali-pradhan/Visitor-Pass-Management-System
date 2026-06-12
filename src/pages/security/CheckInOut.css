@@ -1,0 +1,34 @@
+.check-page{
+    padding:30px;
+}
+
+.check-page h2{
+    text-align:center;
+    color:white;
+    margin-bottom:20px;
+}
+
+.check-page table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+}
+
+.check-page th{
+    background:#2563eb;
+    color:white;
+}
+
+.check-page th,
+.check-page td{
+    padding:12px;
+    border:1px solid #ddd;
+}
+
+.check-page button{
+    padding:8px 15px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:5px;
+}

@@ -1,0 +1,98 @@
+/* =========================
+   Add Visitor Page
+========================= */
+
+.add-visitor-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.visitor-form{
+    width:500px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+
+    background:white;
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.add-visitor-page h2{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+.visitor-form input{
+    padding:14px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.visitor-form input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+.visitor-form button{
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+}
+
+.visitor-form button:hover{
+    background:#1d4ed8;
+}
+
+/* =========================
+   Visitors List Page
+========================= */
+
+.visitors-page{
+    padding:30px;
+}
+
+.visitors-page h2{
+    color:white;
+    text-align:center;
+    margin-bottom:25px;
+    font-size:32px;
+}
+
+.visitors-page table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+.visitors-page th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+.visitors-page td{
+    padding:15px;
+    color:#333;
+    border-bottom:1px solid #e5e7eb;
+    text-align:center;
+}
+
+.visitors-page tr:hover{
+    background:#f8fafc;
+}
