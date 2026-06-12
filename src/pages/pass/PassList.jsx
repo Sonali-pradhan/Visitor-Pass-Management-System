@@ -18,16 +18,22 @@ function PassList() {
           </tr>
         </thead>
 
-        <tbody>
-          {passes.map((pass, index) => (
-            <tr key={index}>
-              <td>{pass.passId}</td>
-              <td>{pass.visitorName}</td>
-              <td>{pass.hostName}</td>
-              <td>{pass.status}</td>
-            </tr>
-          ))}
-        </tbody>
+       <tbody>
+  {passes.length === 0 ? (
+    <tr>
+      <td colSpan="4">No Passes Found</td>
+    </tr>
+  ) : (
+    passes.map((pass, index) => (
+      <tr key={index}>
+        <td>{pass.passId}</td>
+        <td>{pass.visitorName}</td>
+        <td>{pass.hostName}</td>
+        <td>{pass.status}</td>
+      </tr>
+    ))
+  )}
+</tbody>
       </table>
     </div>
   );

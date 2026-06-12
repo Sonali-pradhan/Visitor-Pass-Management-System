@@ -27,6 +27,13 @@ function Dashboard() {
           <h3>Active Passes</h3>
           <p>{passes.length}</p>
         </div>
+         <div className="card">
+           <h3>Total Records</h3>
+           <p>{visitors.length +
+       <q></q> appointments.length +
+        passes.length}
+    </p>
+  </div>
       </div>
     </div>
   );

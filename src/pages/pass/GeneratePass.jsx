@@ -23,6 +23,13 @@ function GeneratePass() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+  !formData.visitorName ||
+  !formData.hostName
+) {
+  alert("Please fill all fields");
+  return;
+}
 
     const passData = {
       ...formData,

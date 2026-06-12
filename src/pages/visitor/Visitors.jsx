@@ -20,16 +20,22 @@ console.log(visitors)
           </tr>
         </thead>
 
-        <tbody>
-          {visitors.map((visitor, index) => (
-            <tr key={index}>
-              <td>{visitor.name}</td>
-              <td>{visitor.email}</td>
-              <td>{visitor.phone}</td>
-              <td>{visitor.purpose}</td>
-            </tr>
-          ))}
-        </tbody>
+       <tbody>
+  {visitors.length === 0 ? (
+    <tr>
+      <td colSpan="4">No Visitors Found</td>
+    </tr>
+  ) : (
+    visitors.map((visitor, index) => (
+      <tr key={index}>
+        <td>{visitor.name}</td>
+        <td>{visitor.email}</td>
+        <td>{visitor.phone}</td>
+        <td>{visitor.purpose}</td>
+      </tr>
+    ))
+  )}
+</tbody>
       </table>
     </div>
   );

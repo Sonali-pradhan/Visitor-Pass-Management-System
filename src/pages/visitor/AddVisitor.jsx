@@ -20,19 +20,29 @@ function AddVisitor() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    addVisitor(formData);
+  if (
+    !formData.name ||
+    !formData.email ||
+    !formData.phone ||
+    !formData.purpose
+  ) {
+    alert("Please fill all fields");
+    return;
+  }
 
-    alert("Visitor Added Successfully");
+  addVisitor(formData);
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      purpose: "",
-    });
-  };
+  alert("Visitor Added Successfully");
+
+  setFormData({
+    name: "",
+    email: "",
+    phone: "",
+    purpose: "",
+  });
+};
 
   return (
     <div className="add-visitor-page">
@@ -49,6 +59,7 @@ function AddVisitor() {
           placeholder="Visitor Name"
           value={formData.name}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -57,6 +68,7 @@ function AddVisitor() {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -65,6 +77,7 @@ function AddVisitor() {
           placeholder="Phone Number"
           value={formData.phone}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -73,6 +86,7 @@ function AddVisitor() {
           placeholder="Purpose"
           value={formData.purpose}
           onChange={handleChange}
+          required
         />
 
         <button type="submit">

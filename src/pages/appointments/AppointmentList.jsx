@@ -20,15 +20,21 @@ function AppointmentList() {
         </thead>
 
         <tbody>
-          {appointments.map((appointment, index) => (
-            <tr key={index}>
-              <td>{appointment.visitorName}</td>
-              <td>{appointment.hostName}</td>
-              <td>{appointment.date}</td>
-              <td>{appointment.time}</td>
-            </tr>
-          ))}
-        </tbody>
+  {appointments.length === 0 ? (
+    <tr>
+      <td colSpan="4">No Appointments Found</td>
+    </tr>
+  ) : (
+    appointments.map((appointment, index) => (
+      <tr key={index}>
+        <td>{appointment.visitorName}</td>
+        <td>{appointment.hostName}</td>
+        <td>{appointment.date}</td>
+        <td>{appointment.time}</td>
+      </tr>
+    ))
+  )}
+</tbody>
       </table>
     </div>
   );

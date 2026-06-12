@@ -51,6 +51,11 @@ function Sidebar() {
     Check In/Out
   </Link>
 </li>
+<li>
+  <Link to="/">
+    Logout
+  </Link>
+</li>
 
       </ul>
 

@@ -21,6 +21,16 @@ function AddAppointment() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (
+  !formData.visitorName ||
+  !formData.hostName ||
+  !formData.date ||
+  !formData.time
+) {
+  alert("Please fill all fields");
+  return;
+}
 
     addAppointment(formData);
 
@@ -48,6 +58,7 @@ function AddAppointment() {
           placeholder="Visitor Name"
           value={formData.visitorName}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -56,6 +67,7 @@ function AddAppointment() {
           placeholder="Host Name"
           value={formData.hostName}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -63,6 +75,7 @@ function AddAppointment() {
           name="date"
           value={formData.date}
           onChange={handleChange}
+          required
         />
 
         <input
@@ -70,6 +83,7 @@ function AddAppointment() {
           name="time"
           value={formData.time}
           onChange={handleChange}
+          required
         />
 
         <button type="submit">
