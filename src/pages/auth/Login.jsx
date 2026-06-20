@@ -1,7 +1,37 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../api/api";
 import "./Login.css";
 
 function Login() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await api.post("/auth/login", {
+        email,
+        password,
+      });
+
+      // Save token
+      localStorage.setItem("token", res.data.token);
+
+      alert("Login successful!");
+
+      // Go to dashboard
+      navigate("/dashboard");
+
+    } catch (error) {
+      console.log(error);
+      alert("Invalid email or password");
+    }
+  };
+
   return (
     <div className="login-container">
 
@@ -15,19 +45,25 @@ function Login() {
           University Visitor Management System
         </p>
 
-        <form>
+        <form onSubmit={handleLogin}>
 
           <input
             type="email"
             placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
           <input
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
-          <button>
+          <button type="submit">
             Login
           </button>
 
