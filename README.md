@@ -1,20 +1,77 @@
-<<<<<<< HEAD
-# React + Vite
+# Visitor Pass Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application designed to streamline visitor check-ins, pass generation, security approvals, host notifications, and analytics dashboard.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frontend**: React, Vite, Tailwind CSS / Vanilla CSS, Lucide Icons, React Router
+- **Backend**: Node.js, Express.js, MongoDB (Mongoose), JWT Authentication
 
-## React Compiler
+## 📁 Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+Visitor-Pass-Management-System/
+├── backend/            # Express REST API & Database models
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── middleware/
+│   ├── .env.example    # Example environment variables
+│   └── package.json
+├── frontend/           # React + Vite Frontend
+│   ├── src/
+│   │   ├── components/
+│   │   ├── layouts/
+│   │   ├── pages/
+│   │   └── routes/
+│   └── package.json
+└── README.md
+```
 
-## Expanding the ESLint configuration
+## ⚙️ Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Visitor-Pass-Management-System
->>>>>>> 1ccb91a55190c525a90e0bb0b09740a47ad425ca
+### Prerequisites
+
+- Node.js (v16+ recommended)
+- MongoDB database (local instance or MongoDB Atlas)
+
+### 1. Backend Setup
+
+```bash
+cd backend
+npm install
+```
+
+Create a `.env` file inside `backend/` based on `.env.example`:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
+
+Run the backend server:
+
+```bash
+npm start
+# or for development with auto-reload:
+npm run dev
+```
+
+### 2. Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The application will be accessible at `http://localhost:5173`.
+
+## 📜 Features
+
+- 👤 **Role-Based Access Control**: Admin, Host, Security, and Visitor modules.
+- 🎟️ **Pass Generation**: Instant pass generation with QR code / tracking details.
+- 📊 **Dashboard & Analytics**: Real-time stats on active visitors, approved passes, and visit history.
+- 🔐 **Secure Authentication**: Password hashing and JWT token-based authorization.

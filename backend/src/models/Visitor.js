@@ -10,20 +10,33 @@ const visitorSchema = new mongoose.Schema(
     name: String,
     email: String,
     phone: String,
+    company: String,
+    department: String,
     purpose: String,
+    idType: {
+      type: String,
+      default: "National ID",
+    },
+    idNumber: String,
+    emergencyContact: String,
 
     host: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    hostName: String,
+
+    appointmentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Appointment",
+    },
 
     photo: String,
-
     qrCode: String,
 
     status: {
       type: String,
-      enum: ["pending", "inside", "outside", "rejected"],
+      enum: ["pending", "approved", "inside", "outside", "rejected", "expired"],
       default: "pending",
     },
 

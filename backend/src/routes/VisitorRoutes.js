@@ -4,22 +4,32 @@ const router = express.Router();
 const {
   createVisitor,
   getVisitors,
+  getVisitorById,
+  updateVisitorStatus,
+  deleteVisitor,
   checkIn,
   checkOut,
-} = require("../controllers/visitorController");
+} = require("../controllers/VisitorController");
 
-const authMiddleware = require("../middleware/authMiddleware");
+// Visitor creation (public or authenticated)
+router.post("/", createVisitor);
 
-// visitor creation
-router.post("/", authMiddleware, createVisitor);
+// Get visitors list
+router.get("/", getVisitors);
 
-// get visitors
-router.get("/", authMiddleware, getVisitors);
+// Get single visitor
+router.get("/:id", getVisitorById);
 
-// check-in
-router.post("/checkin", authMiddleware, checkIn);
+// Update visitor status
+router.put("/:id/status", updateVisitorStatus);
 
-// check-out
-router.post("/checkout", authMiddleware, checkOut);
+// Delete visitor
+router.delete("/:id", deleteVisitor);
+
+// Check-in
+router.post("/checkin", checkIn);
+
+// Check-out
+router.post("/checkout", checkOut);
 
 module.exports = router;

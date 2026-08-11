@@ -2,26 +2,43 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// REGISTER USER
+// REGISTER USER WITH UNIQUE USERNAME & EMAIL VALIDATION
 exports.register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, department } = req.body;
 
-    // check if user exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "Name, email, and password are required" });
     }
 
-    // hash password
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanName = name.trim();
+
+    // Check if email or username already exists
+    const existingUser = await User.findOne({
+      $or: [
+        { email: cleanEmail },
+        { name: { $regex: `^${cleanName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}$`, $options: "i" } },
+      ],
+    });
+
+    if (existingUser) {
+      if (existingUser.email.toLowerCase() === cleanEmail) {
+        return res.status(400).json({ message: "An account with this Email ID already exists!" });
+      }
+      return res.status(400).json({ message: "An account with this User Name already exists!" });
+    }
+
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // create user
+    // Create user
     const user = await User.create({
-      name,
-      email,
+      name: cleanName,
+      email: cleanEmail,
       password: hashedPassword,
-      role,
+      role: role || "employee",
+      department: department || "General",
     });
 
     res.status(201).json({
@@ -37,9 +54,10 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    const cleanEmail = email.trim().toLowerCase();
 
-    // find user
-    const user = await User.findOne({ email });
+    // find user by email
+    const user = await User.findOne({ email: cleanEmail });
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
@@ -62,6 +80,39 @@ exports.login = async (req, res) => {
       token,
       user,
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// GET CURRENT USER PROFILE
+exports.getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// GET ALL HOST EMPLOYEES
+exports.getHosts = async (req, res) => {
+  try {
+    const hosts = await User.find({ role: { $in: ["employee", "admin"] } }).select("name email department phone role");
+    res.json(hosts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// GET ALL USERS
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
+    res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

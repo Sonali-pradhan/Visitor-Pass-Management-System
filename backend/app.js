@@ -35,6 +35,12 @@ app.use("/api/visitors", visitorRoutes);
 const checkRoutes = require("./src/routes/checkRoutes");
 app.use("/api/check", checkRoutes);
 
+const appointmentRoutes = require("./src/routes/appointmentRoutes");
+app.use("/api/appointments", appointmentRoutes);
+
+const statsRoutes = require("./src/routes/statsRoutes");
+app.use("/api/stats", statsRoutes);
+
 // =======================
 // HANDLE INVALID ROUTES
 // =======================

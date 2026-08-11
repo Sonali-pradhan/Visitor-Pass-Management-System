@@ -20,6 +20,17 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "security", "employee", "visitor"],
       default: "visitor",
     },
+    department: {
+      type: String,
+      default: "General",
+    },
+    phone: String,
+    avatar: String,
+    status: {
+      type: String,
+      enum: ["active", "inactive"],
+      default: "active",
+    },
   },
   { timestamps: true }
 );
